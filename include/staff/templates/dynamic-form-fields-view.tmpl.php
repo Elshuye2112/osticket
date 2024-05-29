@@ -14,7 +14,7 @@
             }
             return false;"><i class="icon-large icon-trash"></i></a>
             </div>
-            <div><strong><?php echo Format::htmlchars($form->getLocal('title')); ?></strong></div>
+            <div><strong><?php echo Format::htmlchars($form->getLocal('title'))."elshu"; ?></strong></div>
             <div><?php echo Format::display($form->getLocal('instructions')); ?></div>
         </td>
     </tr>

@@ -44,7 +44,7 @@ class Form {
             $this->notice = $options['notice'];
         if (isset($options['id']))
             $this->id = $options['id'];
-
+            // $this->options['title']="Elshuye";
         // Use POST data if source was not specified
         $this->_source = $source ?: $_POST;
     }
@@ -58,6 +58,7 @@ class Form {
 
     function setNotice($notice) {
         $this->notice = $notice;
+      
     }
 
     function data($source) {
@@ -72,14 +73,17 @@ class Form {
             return;
 
         $this->fields = $fields;
+    
         foreach ($fields as $k=>$f) {
             $f->setForm($this);
             if (!$f->get('name') && $k && !is_numeric($k))
                 $f->set('name', $k);
+                // $f->set('name', "Elshuye");
         }
     }
 
     function getFields() {
+      
         return $this->fields;
     }
 
@@ -2028,7 +2032,9 @@ class ChoiceField extends FormField {
             if (!$this->_choices) {
                 $this->_choices = array();
                 $config = $this->getConfiguration();
-                $choices = explode("\n", $config['choices']);
+                // $choices = explode("\n", $config['choices']);
+                $choices = explode(",", $config['choices']);
+                 error_log("Choices: ".json_encode($choices));
                 foreach ($choices as $choice) {
                     // Allow choices to be key: value
                     list($key, $val) = explode(':', $choice, 2);
@@ -2275,7 +2281,9 @@ class DatetimeField extends FormField {
 
     function to_database($value) {
         // Store time in format given by Date Picker (DateTime::W3C)
+        // error_log($value);
         return $value;
+      
     }
 
     function to_php($value) {
@@ -3972,7 +3980,7 @@ class FileUploadField extends FormField {
 
         if (!$F = AttachmentFile::create($file))
             throw new FileUploadError(__('Unable to save file'));
-
+           error_log(json_encode($F));
         return $F;
     }
 

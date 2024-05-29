@@ -1541,7 +1541,10 @@ class SelectionField extends FormField {
 
     function getListId() {
         list(,$list_id) = explode('-', $this->get('type'));
+        // console.log("result"+$this->get('type'));
+        // error_log("Choices",json_encode($this->get('type')));
         return $list_id ?: $this->get('list_id');
+
     }
 
     function getList() {
@@ -1628,7 +1631,7 @@ class SelectionField extends FormField {
     function to_php($value, $id=false) {
         if (is_string($value))
             $value = JsonDataParser::parse($value) ?: $value;
-
+     
         if (!is_array($value)) {
             $values = array();
             $choices = $this->getChoices();

@@ -53,6 +53,7 @@ class DynamicFormsAjaxAPI extends AjaxController {
 
     function getFieldConfiguration($field_id) {
         $field = DynamicFormField::lookup($field_id);
+        // error_log(explode:",",json_encode())
         include(STAFFINC_DIR . 'templates/dynamic-field-config.tmpl.php');
     }
 

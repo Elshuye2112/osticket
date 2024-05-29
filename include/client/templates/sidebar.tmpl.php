@@ -9,7 +9,16 @@ $BUTTONS = isset($BUTTONS) ? $BUTTONS : true;
     if ($cfg->getClientRegistrationMode() != 'disabled'
         || !$cfg->isClientLoginRequired()) { ?>
             <a href="open.php" style="display:block" class="blue button"><?php
-                echo __('Open a New Ticket');?></a>
+                echo __('Open a New Ticket');?>
+                
+                </a>
+                <!-- added by me for testing -->
+                <a href="scp/index.php" style="display:block; background-color:red;color:black;" class="blue button"><?php
+                echo __('elsh@include/client/templets/sidebar.tmpl.php');
+                ?>
+                
+                </a>
+
 </p>
 <?php } ?>
 <p>

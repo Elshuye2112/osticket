@@ -31,6 +31,11 @@ $isCreate = (isset($options['mode']) && $options['mode'] == 'create');
             continue;
         }
         ?>
+        <th>Welcome <?php echo $field->getFormName()." and ".$field->isEnabled(); 
+        // $field.getLocal('label') == 'branch'
+        // if($field.get('name')=="branch")
+       
+        ?></th>
         <tr>
             <td colspan="2" style="padding-top:10px;">
             <?php if (!$field->isBlockLevel()) { ?>

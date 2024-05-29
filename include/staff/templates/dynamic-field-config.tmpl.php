@@ -124,6 +124,7 @@
         echo csrf_token();
         $form = $field->getConfigurationForm();
         echo $form->getMedia();
+        // echo"elshuye".$form;
         foreach ($form->getFields() as $name=>$f) { ?>
             <div class="flush-left custom-field" id="field<?php echo $f->getWidget()->id;
                 ?>" <?php if (!$f->isVisible()) echo 'style="display:none;"'; ?>>

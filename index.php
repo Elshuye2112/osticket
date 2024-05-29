@@ -24,6 +24,7 @@ require(CLIENTINC_DIR.'header.inc.php');
 <?php include CLIENTINC_DIR.'templates/sidebar.tmpl.php'; ?>
 <div class="main-content">
 <?php
+echo"<h1>HH@index.php</h1>";
 if ($cfg && $cfg->isKnowledgebaseEnabled()) { ?>
 <div class="search-form">
     <form method="get" action="kb/faq.php">
@@ -39,6 +40,7 @@ if ($cfg && $cfg->isKnowledgebaseEnabled()) { ?>
         echo $page->getBodyWithImages();
     else
         echo  '<h1>'.__('Welcome to the Support Center').'</h1>';
+        // echo  '<h1>'.__('Welcome to the Support Center elsh').'</h1>';
     ?>
     </div>
 </div>

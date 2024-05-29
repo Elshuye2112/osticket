@@ -155,7 +155,7 @@ if ($form && count($langs) > 1) { ?>
     <thead>
         <tr>
             <th colspan="7">
-                <em><strong><?php echo __('Form Fields'); ?></strong>
+                <em><strong><?php echo __('Form Fields '); ?></strong>
                 <?php echo __('fields available where this form is used'); ?></em>
             </th>
         </tr>
@@ -293,7 +293,7 @@ if ($form && count($langs) > 1) { ?>
     </tbody>
     </table>
 <p class="centered">
-    <input type="submit" name="submit" value="<?php echo $submit_text; ?>">
+    <input type="submit" name="submit" value="<?php echo $submit_text.""; ?>">
     <input type="reset"  name="reset"  value="<?php echo __('Reset'); ?>">
     <input type="button" name="cancel" value="<?php echo __('Cancel'); ?>" onclick='window.location.href="?"'>
 </p>

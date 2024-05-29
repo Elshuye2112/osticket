@@ -80,6 +80,8 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
                                 $id, ($info['topicId']==$id)?'selected="selected"':'', $name);
                     }
                 } ?>
+                <!-- <option value="cluste">cluster</option>
+                <option value="branch">branch</option> -->
             </select>
             <font class="error">*&nbsp;<?php echo $errors['topicId']; ?></font>
         </td>
