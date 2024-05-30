@@ -86,7 +86,8 @@ if (isset($options['entry']) && $options['mode'] == 'edit') { ?>
                             });
                         return false;"
                         data-field-id="<?php echo $field->getAnswer()->get('field_id');
-                    ?>" data-entry-id="<?php echo $field->getAnswer()->get('entry_id');
+                        
+                        ?>" data-entry-id="<?php echo $field->getAnswer()->get('entry_id');
                     ?>"> <i class="icon-trash"></i> </a></div><?php
                 }
                 if ($a && !$a->getValue() && $field->isRequiredForClose() && get_class($field) != 'BooleanField') {

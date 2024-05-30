@@ -30,12 +30,40 @@ $isCreate = (isset($options['mode']) && $options['mode'] == 'create');
         } elseif (!$field->isVisibleToUsers()) {
             continue;
         }
+        $disabled="";
+        if($field->getLocal('label')=="district"||$field->getLocal('label')=="cluster")
+        {
+            $disabled='disabled';
+
+        }
+
         ?>
-        <th>Welcome <?php echo $field->getFormName()." and ".$field->isEnabled(); 
-        // $field.getLocal('label') == 'branch'
-        // if($field.get('name')=="branch")
+        <th>Welcome <?php echo $field->getFormName()." and ".$field->isEnabled()." " .$field->getFormId();?> </th>
+       <th> <?php echo "Maru".$field->getLocal('name');?></th>
+       <?php
+
+        ?>
+       <?php echo"<script type='text/javascript'>
+       function getValue(){
+        // alert('elshu');
+        prompt('Please enter your name','Elshaday ');  
+       }
+
+    //    var btn=documentGetElementById('btn');
+    //    btn.addEventListener('load',function(){
+    //     alert('Desiiiiiiiiiiiiiiiieeeeeeeeee');
+    //    });
+       </script>"
+      
+       ?>
+       <?php echo" <button type='button' id='btn' onclick='getValue()' >clickme</button>"?>
+       <?php
+       if($field->getLocal('name')=='branch'){
        
-        ?></th>
+       }
+       ?>
+
+
         <tr>
             <td colspan="2" style="padding-top:10px;">
             <?php if (!$field->isBlockLevel()) { ?>
@@ -56,7 +84,20 @@ $isCreate = (isset($options['mode']) && $options['mode'] == 'create');
             <?php
             }
             if ($field->isEditableToUsers() || $isCreate) {
+                //added for storing on buffer rutther than rendering
+                ob_start();
+
                 $field->render(array('client'=>true));
+//new added for cleaning buffer
+                $filed_html = ob_get_clean();
+//added for validation
+  if($disabled){
+   $filed_html=preg_replace('/(<select[^>]*)/','$1 disabled',$filed_html);
+
+  }
+  //added for display
+  echo $filed_html;
+
                 ?></label><?php
                 foreach ($field->errors() as $e) { ?>
                     <div class="error"><?php echo $e; ?></div>

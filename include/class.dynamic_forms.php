@@ -1821,6 +1821,8 @@ class SelectionField extends FormField {
             $choices = array();
             foreach ($this->getList()->getItems() as $i)
                 $choices[$i->getId()] = $i->getValue();
+                // $choices[$i->getId()] = "Ethiopia";
+
 
             // Retired old selections
             $values = ($a=$this->getAnswer()) ? $a->getValue() : array();

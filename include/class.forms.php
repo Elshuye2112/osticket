@@ -2025,22 +2025,63 @@ class ChoiceField extends FormField {
         return $selection;
     }
 
-    function getChoices($verbose=false, $options=array()) {
+    // function getChoices($verbose=false, $options=array()) {
+    //     if ($this->_choices === null || $verbose) {
+    //         // Allow choices to be set in this->ht (for configurationOptions)
+    //         $this->_choices = $this->get('choices');
+    //         if (!$this->_choices) {
+    //             $this->_choices = array();
+    //             $config = $this->getConfiguration();
+    //              $choices = explode("\n", $config['choices']);
+    //             // $choices = explode(",", $config['choices']);
+            
+    //              error_log("Choices: ".json_encode($choices));
+    //             foreach ($choices as $choice) {
+    //                 // Allow choices to be key: value
+    //                 list($key, $val) = explode(':', $choice, 2);
+    //                 if ($val == null)
+    //                     $val = $key;
+    //                 $this->_choices[trim($key)] = trim($val);
+
+    //             }
+    //             // Add old selections if nolonger available
+    //             // This is necessary so choices made previously can be
+    //             // retained
+    //             $values = ($a=$this->getAnswer()) ? $a->getValue() : array();
+    //             if ($values && is_array($values)) {
+    //                 foreach ($values as $k => $v) {
+    //                     if (!isset($this->_choices[$k])) {
+    //                         if ($verbose) $v .= ' (retired)';
+    //                         $this->_choices[$k] = $v;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return $this->_choices;
+    // }
+    function getChoices($verbose = false, $options = array()) {
         if ($this->_choices === null || $verbose) {
             // Allow choices to be set in this->ht (for configurationOptions)
             $this->_choices = $this->get('choices');
             if (!$this->_choices) {
                 $this->_choices = array();
                 $config = $this->getConfiguration();
-                // $choices = explode("\n", $config['choices']);
-                $choices = explode(",", $config['choices']);
-                 error_log("Choices: ".json_encode($choices));
+                $choices = explode("\n", $config['choices']); // assuming choices are separated by newline
+                
+                error_log("Choices: " . json_encode($choices));
                 foreach ($choices as $choice) {
-                    // Allow choices to be key: value
+                    // Allow choices to be key: value1,value2,value3
                     list($key, $val) = explode(':', $choice, 2);
-                    if ($val == null)
-                        $val = $key;
-                    $this->_choices[trim($key)] = trim($val);
+                    if ($val !== null) {
+                        // Explode the values part to get the first value
+                        $values = explode(",", $val);
+                        $firstValue = trim($values[0]);
+                    } else {
+                        $firstValue = trim($key); // If no values are present, use the key itself
+                    }
+                    
+                    $this->_choices[trim($key)] = $firstValue;
                 }
                 // Add old selections if nolonger available
                 // This is necessary so choices made previously can be
@@ -2058,7 +2099,6 @@ class ChoiceField extends FormField {
         }
         return $this->_choices;
     }
-
     function lookupChoice($value) {
         return null;
     }
