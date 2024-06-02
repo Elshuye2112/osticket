@@ -2061,6 +2061,7 @@ class ChoiceField extends FormField {
     //     return $this->_choices;
     // }
     function getChoices($verbose = false, $options = array()) {
+
         if ($this->_choices === null || $verbose) {
             // Allow choices to be set in this->ht (for configurationOptions)
             $this->_choices = $this->get('choices');
@@ -2077,8 +2078,13 @@ class ChoiceField extends FormField {
                         // Explode the values part to get the first value
                         $values = explode(",", $val);
                         $firstValue = trim($values[0]);
+                        //cluster value
+                    //     $cluster=  trip($values[1]);
+                    //    //district value
+                    //     $district= trip($values[2]);
                     } else {
                         $firstValue = trim($key); // If no values are present, use the key itself
+ 
                     }
                     
                     $this->_choices[trim($key)] = $firstValue;
